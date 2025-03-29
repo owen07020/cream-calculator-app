@@ -1,7 +1,11 @@
 import React from 'react';
 
-function CreamForecast() {
-  return <div>Cream Forecast Page (Coming soon)</div>;
+export default function CreamForecast() {
+  return (
+    <div>
+      <h2 className="text-2xl font-bold mb-4">Cream Forecast Page</h2>
+      <p>This is where you’ll run future growth simulations.</p>
+    </div>
+  );
 }
 
-export default CreamForecast;
