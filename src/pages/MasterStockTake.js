@@ -1,7 +1,10 @@
 import React from 'react';
 
-function MasterStockTake() {
-  return <div>Master Stock Take Page (Coming soon)</div>;
+export default function MasterStockTake() {
+  return (
+    <div>
+      <h2 className="text-2xl font-bold mb-4">Master Stock Take Page</h2>
+      <p>This is where you’ll track real stock and bottlenecks.</p>
+    </div>
+  );
 }
-
-export default MasterStockTake;
