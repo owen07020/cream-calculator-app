@@ -93,4 +93,6 @@ export const ProductProfile = ({ profiles, setProfiles }) => {
   );
 };
 
+export default ProductProfile;
+
 
