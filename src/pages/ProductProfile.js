@@ -1,12 +1,6 @@
-// This is a minimal working prototype connecting the Product Profile and Master Stock Take backend logic.
-// It handles product definitions, component structures, and updates stock as Amazon quantities are edited.
-
-// ------------------------------
-// ProductProfile.js
-// ------------------------------
 import React, { useState } from 'react';
 
-export const ProductProfile = ({ onSave }) => {
+const ProductProfile = ({ onSave }) => {
   const [productName, setProductName] = useState('');
   const [components, setComponents] = useState([]);
 
@@ -57,6 +51,9 @@ export const ProductProfile = ({ onSave }) => {
     </div>
   );
 };
+
+export default ProductProfile;
+
 
 
 
