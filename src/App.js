@@ -1,34 +1,35 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProductProfile from './pages/ProductProfile';
 import MasterStockTake from './pages/MasterStockTake';
-import CreamForecast from './pages/CreamForecast';
 
 function App() {
+  const [profiles, setProfiles] = useState([]);
+
+  const handleSaveProfile = (newProfile) => {
+    setProfiles((prev) => [...prev, newProfile]);
+  };
+
   return (
     <Router>
-      <div className="min-h-screen flex">
-        {/* Sidebar */}
-        <aside className="w-64 bg-gray-900 text-white p-6 space-y-4">
-          <h1 className="text-2xl font-bold mb-6">The Cream Calculator</h1>
-          <nav className="space-y-2">
-            <Link to="/" className="block py-2 px-3 rounded hover:bg-gray-700">Product Profile</Link>
-            <Link to="/mst" className="block py-2 px-3 rounded hover:bg-gray-700">Master Stock Take</Link>
-            <Link to="/forecast" className="block py-2 px-3 rounded hover:bg-gray-700">Cream Forecast</Link>
-          </nav>
-        </aside>
-
-        {/* Main Content */}
-        <main className="flex-1 p-6 bg-gray-100 overflow-auto">
+      <div className="flex">
+        <div className="w-1/4 bg-gray-100 min-h-screen p-4">
+          <h1 className="text-xl font-bold mb-4">Cream Calculator</h1>
+          <ul>
+            <li><a href="/" className="text-blue-600">Product Profile</a></li>
+            <li><a href="/mst" className="text-blue-600">Master Stock Take</a></li>
+          </ul>
+        </div>
+        <div className="w-3/4 p-4">
           <Routes>
-            <Route path="/" element={<ProductProfile />} />
-            <Route path="/mst" element={<MasterStockTake />} />
-            <Route path="/forecast" element={<CreamForecast />} />
+            <Route path="/" element={<ProductProfile onSave={handleSaveProfile} />} />
+            <Route path="/mst" element={<MasterStockTake profiles={profiles} />} />
           </Routes>
-        </main>
+        </div>
       </div>
     </Router>
   );
 }
 
 export default App;
+
