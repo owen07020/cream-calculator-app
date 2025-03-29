@@ -1,33 +1,36 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import ProductProfile from './pages/ProductProfile';
-import MasterStockTake from './pages/MasterStockTake';
 import CreamForecast from './pages/CreamForecast';
+import MasterStockTake from './pages/MasterStockTake';
+import ProductProfile from './pages/ProductProfile';
 
 function App() {
   return (
     <Router>
-      <div className="flex h-screen">
+      <div className="flex min-h-screen">
         {/* Sidebar */}
-        <div className="w-64 bg-gray-900 text-white p-6 space-y-4">
-          <h2 className="text-2xl font-bold">Cream Calculator</h2>
-          <ul className="space-y-2">
-            <li><Link to="/" className="block hover:text-yellow-400">Product Profile</Link></li>
-            <li><Link to="/mst" className="block hover:text-yellow-400">Master Stock Take</Link></li>
-            <li><Link to="/forecast" className="block hover:text-yellow-400">Cream Forecast</Link></li>
-          </ul>
+        <div className="w-64 bg-gray-800 text-white p-4 space-y-4">
+          <h1 className="text-2xl font-bold mb-6">Cream Calc</h1>
+          <Link className="block hover:bg-gray-700 p-2 rounded" to="/">Forecast</Link>
+          <Link className="block hover:bg-gray-700 p-2 rounded" to="/mst">Master Stock Take</Link>
+          <Link className="block hover:bg-gray-700 p-2 rounded" to="/profile">Product Profile</Link>
         </div>
 
         {/* Page Content */}
-        <div className="flex-1 p-6 overflow-y-auto bg-gray-100">
+        <div className="flex-1 p-6 bg-gray-50">
           <Routes>
-            <Route path="/" element={<ProductProfile />} />
+            <Route path="/" element={<CreamForecast />} />
             <Route path="/mst" element={<MasterStockTake />} />
-            <Route path="/forecast" element={<CreamForecast />} />
+            <Route path="/profile" element={<ProductProfile />} />
           </Routes>
         </div>
       </div>
     </Router>
+  );
+}
+
+export default App;
+
   );
 }
 
