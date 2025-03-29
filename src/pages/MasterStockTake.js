@@ -1,7 +1,16 @@
-import React, { useState } from 'react';
+// ------------------------------
+// MasterStockTake.js
+// ------------------------------
+import React, { useState, useEffect } from 'react';
 
-const MasterStockTake = ({ profiles }) => {
+function MasterStockTake({ profiles }) {
   const [amazonStock, setAmazonStock] = useState({});
+  const [storedProfiles, setStoredProfiles] = useState([]);
+
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem('productProfiles') || '[]');
+    setStoredProfiles(saved);
+  }, [profiles]);
 
   const handleStockChange = (product, value) => {
     setAmazonStock({ ...amazonStock, [product]: parseInt(value) || 0 });
@@ -10,7 +19,7 @@ const MasterStockTake = ({ profiles }) => {
   return (
     <div className="p-4">
       <h2 className="text-xl font-bold mb-4">Master Stock Take</h2>
-      {profiles.map((profile, idx) => {
+      {(storedProfiles.length > 0 ? storedProfiles : profiles).map((profile, idx) => {
         const productStock = amazonStock[profile.productName] || 0;
         return (
           <div key={idx} className="mb-6 border p-4 rounded-xl shadow">
@@ -53,7 +62,8 @@ const MasterStockTake = ({ profiles }) => {
       })}
     </div>
   );
-};
+}
 
 export default MasterStockTake;
+
 
