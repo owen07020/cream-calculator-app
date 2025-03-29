@@ -1,36 +1,33 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import CreamForecast from './pages/CreamForecast';
-import MasterStockTake from './pages/MasterStockTake';
 import ProductProfile from './pages/ProductProfile';
+import MasterStockTake from './pages/MasterStockTake';
+import CreamForecast from './pages/CreamForecast';
 
 function App() {
   return (
     <Router>
-      <div className="flex min-h-screen">
+      <div className="min-h-screen flex">
         {/* Sidebar */}
-        <div className="w-64 bg-gray-800 text-white p-4 space-y-4">
-          <h1 className="text-2xl font-bold mb-6">Cream Calc</h1>
-          <Link className="block hover:bg-gray-700 p-2 rounded" to="/">Forecast</Link>
-          <Link className="block hover:bg-gray-700 p-2 rounded" to="/mst">Master Stock Take</Link>
-          <Link className="block hover:bg-gray-700 p-2 rounded" to="/profile">Product Profile</Link>
-        </div>
+        <aside className="w-64 bg-gray-900 text-white p-6 space-y-4">
+          <h1 className="text-2xl font-bold mb-6">The Cream Calculator</h1>
+          <nav className="space-y-2">
+            <Link to="/" className="block py-2 px-3 rounded hover:bg-gray-700">Product Profile</Link>
+            <Link to="/mst" className="block py-2 px-3 rounded hover:bg-gray-700">Master Stock Take</Link>
+            <Link to="/forecast" className="block py-2 px-3 rounded hover:bg-gray-700">Cream Forecast</Link>
+          </nav>
+        </aside>
 
-        {/* Page Content */}
-        <div className="flex-1 p-6 bg-gray-50">
+        {/* Main Content */}
+        <main className="flex-1 p-6 bg-gray-100 overflow-auto">
           <Routes>
-            <Route path="/" element={<CreamForecast />} />
+            <Route path="/" element={<ProductProfile />} />
             <Route path="/mst" element={<MasterStockTake />} />
-            <Route path="/profile" element={<ProductProfile />} />
+            <Route path="/forecast" element={<CreamForecast />} />
           </Routes>
-        </div>
+        </main>
       </div>
     </Router>
-  );
-}
-
-export default App;
-
   );
 }
 
